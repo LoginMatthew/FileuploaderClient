@@ -1,0 +1,62 @@
+
+<section class="col my-2 mx-2">  
+  <img src="{{imgSrcURL}}" class="ShowPicture" (click)="open(popupmodal)" data-toggle="modal" data-target="#myModal"
+    style="max-height: 200px; max-width: 200px;"/>
+</section>
+  
+<section>
+  <ng-template #popupmodal let-modal>
+    <header class="modal-header" 
+            style="text-align: center;
+                  word-break: break-all;
+                  white-space: pre-line;">
+      <h2 class="modal-title" id="modal-title" 
+      style="align-content:  center;
+      margin-left: auto;
+      margin-right: auto;">
+      {{NameOfPicture}}</h2>
+    </header>
+    <section class="modal-body">
+      <section class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <img
+          src="{{imgSrcURL}}"
+          style="max-width:100%;cursor:pointer;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;"
+          class="modal-hover-opacity"/>
+      </section>
+      <section>
+        <hr>
+        <p style="text-align: center;">{{Description}}</p>
+      </section>            
+    </section>
+  </ng-template>  
+  <section 
+    class="modal modal-lg" tabindex="-1" role="dialog"> 
+    <section class="modal-dialog "> 
+      <section class="modal-content"> 
+        <section class="modal-header"> 
+          <h4 class="modal-title" 
+          style="align-content:  center;
+                margin-left: auto;
+                margin-right: auto;">
+              {{NameOfPicture}}
+          </h4> 
+        </section> 
+        <section class="modal-body"> 
+          <img  src="{{imgSrcURL}}" class="modal-hover-opacity"
+          style="max-width:100%;cursor:pointer;   
+                display: block;
+                margin-left: auto;
+                margin-right: auto;"/>
+          <section>
+            <hr>
+            <p style="text-align: center;">{{Description}}</p>
+          </section> 
+        </section>
+      </section> 
+    </section> 
+  </section>
+</section>
+  

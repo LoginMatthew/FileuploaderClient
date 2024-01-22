@@ -1,0 +1,83 @@
+
+<section class="container d-flex align-items-center justify-content-center"  style=" min-width: 430px;  max-width: 600px; margin-top: 50px;">
+  <section class="col">
+    <mat-card class="d-flex align-items-center justify-content-center">
+      <mat-card-title style="margin-top: 1rem;">
+        <header>
+          <h2 class="form-signin-heading">Upload One file with description</h2>
+        </header>        
+      </mat-card-title>
+      <mat-card-content style="min-width: 430px;  max-width: 600px;">        
+        <section class="row">
+          <section class="col create my-3" *ngIf="isCreate">
+            <form>
+              <section class="mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter a name" [(ngModel)]="dFile.name">
+              </section>
+              <section class="mb-3">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Enter a Description" [(ngModel)]="dFile.description">
+              </section>
+              <section class="mb-3" data-bs-placement="top" title="Private content: Only visible by uploader and administrator">
+                <i class="bi bi-incognito" style="font-size: 1.5rem;"></i>
+                <label class="mx-2" for="privateContent">Private:</label>
+                <input style="font-size: 1.4rem;" type="checkbox" class="form-check-input" id="privateContent" name="privateContent" placeholder="Enter a Description" [(ngModel)]="dFile.isPrivate">
+              </section>
+              <section class="row">
+                <section class="col d-flex align-items-center justify-content-center">
+                  <input type="file" #file placeholder="Choose file" (change)="onChange($event)"  style="display:none;" multiple>
+                  <button type="button" style="width: 120px;" class="btn btn-success"  (click)="file.click()">Choose File</button>
+                </section>
+              </section>              
+              <section class="row" style="margin-bottom:15px;">                
+                <section *ngIf="fileName != ''">          
+                  <section class="file-info">
+                    <section class="row" *ngIf="isPicture">
+                      <label>Preview:</label>
+                    </section>
+                    <section class="row" *ngIf="isPicture">
+                      <img [src]="pictureSrc" style="max-height: 50%; max-width: 50%; margin: auto; display: block;" [title]="fileName" [alt]="fileName">
+                    </section>
+                    <section class="row">
+                      <header>
+                        <label>File details:</label>
+                      </header>                      
+                      <section>
+                        <ul>              
+                          <li *ngIf="!isPicture"><i class="bi bi-files w-50 h-50"></i> file </li>
+                          <li>Name: {{fileName}}</li>
+                          <li>Type: {{fileType}} </li>
+                          <li>Size: {{fileSize}} bytes</li>
+                        </ul>
+                      </section>                      
+                    </section>            
+                  </section>       
+                </section>
+              </section>
+              <section class="row">
+                <section class="col d-flex align-items-center justify-content-center">
+                  <button style="margin-bottom: 3rem; width: 150px;" type="button" class="btn btn-primary" (click)="uploadFile()"><i class="bi bi-cloud-upload"></i> Upload Data </button>
+                </section>
+              </section>
+            </form>
+          </section>
+          <section class="users" *ngIf="!isCreate">
+            <section class="col my-3" style="width: 250px; display: block; margin: auto;">
+              <section class="row my-3">
+                <button type="button" class="btn btn-primary"  (click)="returnToCreate()"><i class="bi bi-file-plus"> Upload new file</i></button>
+              </section>
+              <section class="row">
+                <button type="button" [routerLink]="'/showAllData'" class="btn btn-info"><i class="bi bi-database"> Show  all uploaded file(s)</i></button>
+              </section>
+            </section>    
+          </section>
+        </section>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</section>
+
+
+
+

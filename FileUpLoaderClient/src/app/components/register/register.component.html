@@ -1,0 +1,104 @@
+
+<section class="container d-flex align-items-center justify-content-center" style="margin-top: 150px; height: 300px;">
+  <section class="row  d-flex align-items-center justify-content-center">
+    <mat-card class="d-flex align-items-center justify-content-center" style="margin-bottom: 5rem; margin-top: 7.5rem;">
+      <mat-card-title style="margin-top: 1rem;">
+        <header>
+          <h1>Register a New User</h1>
+        </header>        
+      </mat-card-title>
+      <mat-card-content>
+        <section class="row">
+          <section class="col"  *ngIf="!isCreatedUser">
+            <section class="row">
+              <section class="col  d-flex align-items-center justify-content-center">
+                <form  [formGroup]="registerForm" autocomplete="off">
+                  <section class="form-group my-2" *ngIf="showError" class="alert alert-danger" role="alert">
+                    {{errorMessage}}
+                  </section>
+                  <section class="mb-3">
+                    <label class="my-1" for="name">User name:</label>
+                    <input type="text"  style="min-width: 285px; max-width: 285px;" class="form-control" id="userName" name="userName" 
+                    placeholder="Enter a UserName"  formControlName="userName">
+                  </section>
+                  <section>
+                    <ng-container *ngFor="let error of error_messages.userName">
+                      <section class="form-group my-2" class="alert alert-danger" role="alert"  *ngIf="registerForm.get('userName')?.hasError(error.type) && (registerForm.get('userName')?.dirty || registerForm.get('userName')?.touched)">
+                        {{ error.message }}
+                      </section>               
+                    </ng-container>
+                  </section>
+                  <section class="mb-3">
+                      <label for="name">Password:</label>
+                      <section class="input-group my-1">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input class="form-control" style="min-width: 205px; max-width: 205px;" [type] = "hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter a password"  formControlName="password">
+                        <span class="input-group-text" (click)="togglePassword()">
+                          <i class="bi bi-eye" *ngIf="hidePassword"   id="togglePassword" style="cursor: pointer"></i>
+                          <i class="bi bi-eye-slash" *ngIf="!hidePassword" id="togglePassword" style="cursor: pointer"></i>
+                          </span>
+                      </section>
+                  </section>
+                  <section>
+                    <ng-container *ngFor="let error of error_messages.password">
+                      <section class="form-group my-2" class="alert alert-danger" role="alert"  *ngIf="registerForm.get('password')?.hasError(error.type) && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                        {{ error.message }}
+                      </section>               
+                    </ng-container>
+                  </section>
+                  <section class="mb-3">
+                    <label for="name">Password Again:</label>
+                    <div class="input-group my-1">
+                      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                      <input class="form-control" style="min-width: 205px; max-width: 205px;" [type] = "hidePassword2 ? 'password' : 'text'" id="password" name="password" placeholder="Enter password again" formControlName="confirmPassword" >
+                      <span class="input-group-text" (click)="togglePassword2()">
+                        <i class="bi bi-eye" *ngIf="hidePassword2"   id="togglePassword2" style="cursor: pointer"></i>
+                        <i class="bi bi-eye-slash" *ngIf="!hidePassword2" id="togglePassword2" style="cursor: pointer"></i>
+                        </span>
+                    </div>
+                  </section>
+                  <section>
+                    <ng-container *ngFor="let error of error_messages.confirmPassword">   
+                      <section class="form-group my-2" class="alert alert-danger" role="alert" *ngIf="registerForm.get('confirmPassword')?.hasError(error.type) && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)">
+                        {{ error.message }}
+                      </section>
+                    </ng-container>
+                  </section>      
+                  <section class="row" data-bs-toggle="tooltip" data-bs-placement="top" title="If check user rights are given">
+                      <section *ngIf="isAdmminLoggedIn" class="col mb-3">
+                          <label style="cursor: pointer;" class="mx-2" for="adminCheckBox">IsAdmin:</label>
+                          <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="adminCheckBox" name="IsAdmin"   [(ngModel)]="isAdmin"  [ngModelOptions]="{standalone: true}">
+                      </section>
+                      <section *ngIf="!isGuestRegister" class="col mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="If it is checked user rights are given if not checked Guest rights are given!">
+                          <label style="cursor: pointer;" class="mx-2" for="userCheckBox">isUser:</label>
+                          <input style="cursor: pointer;" type="checkbox" class="form-check-input" id="userCheckBox" name="isUser" [(ngModel)]="isUser"  [ngModelOptions]="{standalone: true}">
+                      </section>
+                  </section>            
+                </form>          
+              </section>
+            </section>  
+            <section class="row">
+              <section class="col my-2 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)="registerNewUser()" data-bs-placement="top" title="Register a new user with the given data!" [disabled]="!registerForm.valid">Create New User </button>
+              </section>
+            </section>       
+          </section>
+        </section>
+          <section class="row">
+            <section class="col" *ngIf="isCreatedUser">
+              <section class="row">
+                <section class="col my-4 d-flex justify-content-center">
+                  <h3>User is Genrated!</h3>
+                </section>
+              </section>
+              <section class="row">
+                <section class="col d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary my-5" (click)="isCreatedUser = !isCreatedUser">Create Other New User </button>
+                </section>
+              </section>
+            </section>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </section>   
+</section>

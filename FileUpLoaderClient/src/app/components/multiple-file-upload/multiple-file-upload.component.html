@@ -1,0 +1,55 @@
+
+  <section class="container d-flex align-items-center justify-content-center" style="margin-top: 50px;">
+    <section class="col d-flex align-items-center justify-content-center">
+      <mat-card class="d-flex align-items-center justify-content-center" style="margin-bottom: 5rem; max-width: 600px;">
+        <mat-card-title style="margin-top: 1rem;">
+          <h2 class="form-signin-heading">Multiple Files Upload</h2>
+        </mat-card-title>
+        <mat-card-content>
+        <section class="row">
+          <section class="mb-3">
+            <label for="formFile" class="form-label mb-2">Data information handled by server!!! <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Name will be the given file's name and description's content will be the given file's type"></i></label>
+            <input class="form-control" type="file" id="formFile" multiple (change)="onChange($event)" style="cursor: pointer;">
+          </section>
+          <section class="my-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Private content: Only visible by uploader and administrator">
+            <label class="form-check-label mx-2" for="privateContent"><i class="bi bi-incognito"> Is Private:</i></label>
+            <input type="checkbox" class="form-check-input" id="privateContent" name="privateContent" [checked]="isPrivate" (change)="isPrivate = !isPrivate" >
+          </section>
+          <section *ngIf="files.length" class="file-section">
+            <section *ngFor="let file of files">
+              <header>
+                <h4>File details:</h4>
+              </header>            
+              <ul>
+                <li *ngIf="file.type.includes('video')"><i class="bi bi-film w-50 h-50"></i> video </li>
+                <li *ngIf="file.type.includes('image')"><i class="bi bi-image w-50 h-50"></i> image </li>
+                <li *ngIf="file.type.includes('audio')"><i class="bi bi-file-music w-50 h-50"></i> audio </li>
+                <li *ngIf="!file.type.includes('video') && !file.type.includes('audio') && !file.type.includes('image')"><i class="bi bi-file w-50 h-50"></i> file </li>
+                <li>Name: {{file.name}}</li>
+                <li>Type: {{file.type}}</li>
+                <li>Size: {{file.size}} bytes</li>
+              </ul>
+            </section>
+              <section style="margin-bottom: 1rem;" [ngSwitch]="status">
+                <header>
+                  <h4>Upload status: </h4>
+                </header>                
+                <p *ngSwitchCase="'uploading'">⏳ Uploading...</p>
+                <p *ngSwitchCase="'success'">✅ Done!</p>
+                <p *ngSwitchCase="'fail'">❌ Error!</p>
+                <p *ngSwitchDefault>😶 Waiting to upload...</p>
+              </section>
+              <section style="margin-bottom: 5rem;" class="col">
+                <section class="row" >
+                  <button  type="button" class="btn btn-primary my-3" (click)="onUpload()"><i class="bi bi-cloud-upload"></i> Upload File(s)</button>
+                </section>  
+                <section class="row" *ngIf="status.includes('success')">
+                  <button type="button" [routerLink]="'/showAllData'" class="btn btn-info"><i class="bi bi-database"> Show  all uploaded file(s)</i></button>
+                </section>  
+              </section>                    
+          </section>
+        </section>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</section>

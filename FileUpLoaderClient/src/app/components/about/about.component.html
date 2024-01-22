@@ -1,0 +1,81 @@
+
+<section class="container d-flex align-items-center justify-content-center" style="max-width: 800px; margin-top: 2rem;">
+    <section class="col  d-flex align-items-center justify-content-center">
+      <mat-card class="d-flex align-items-center justify-content-center" style="margin-bottom: 5rem;" >
+        <mat-card-title style="margin-top: 1.5rem;">
+            <header>
+                <h1 style="font-weight: bold; font-size:xx-large; text-align: center;">About the File Uploader program</h1>
+            </header>         
+        </mat-card-title>
+        <mat-card-content>
+            <section class="col">                          
+                <section class="row">
+                    <article>
+                        <p style="text-align: justify;">
+                            People are able to store files and check the uploaded files and able to download them which are uploaded.
+                            The layout of the pages is also optimized for mobile use (Tested on Mozilla Firefox 121.0.1 (desktop) and google chrome (mobile)).
+                            This program is perfect to use to share files between family members at home.
+                        </p>
+                        <article>
+                            <header>
+                                <h2>Usage of the site</h2>
+                            </header>
+                            <p style="text-align: justify;">
+                                Uploaded files can be watch on the site if those files are pictures or videos or audio files (minimum file size > 0byte).
+                                There are three type of users which are guest, user and admin.
+                                The uplodaed files can be set to be public or private (only the uploader and admintrators are able to see).
+                                Only the file's owner and the admin are able to delete and modify the visibilty of the selected content.
+                                Any User is able to upgrade a Guest to "user" level but unable to modify User to "guest" level.
+                            </p>
+                            <p style="text-align: justify;">
+                                On "All Uploaded data" page, If you tap/click on picture/video/audio then a modal (popup) will be opened to see the content.
+                                To exit from the modal then click/tap outside the modal (popup) and the modal will be closed.
+                            </p>     
+                        </article>                       
+                    </article>
+                    <article>
+                        <header>
+                            <h2>Development information</h2>
+                        </header>
+                        <p style="text-align: justify;">               
+                            The "data objects" are encrypted and transfered between the server and client. Files are not ecrypted.
+                            Password are stored with ecryption.
+                            Token is used to avoid unauthrize access so only logged in user is able to requerst data from the server.
+                            The refresh token is used not to give a long period of Token.
+                            Automatic logout is done after a given period of time or inactivity.
+                        </p>
+                        <p>
+                            The client program mainly tested on Desktop Mozilla Firefox and some part was tested on Mobile's Google Chrome!
+                        </p>
+                        <p style="color: red;">
+                           The application development is <b>NOT finished</b> and there are some known errors or the way what I longed or it was requested to develop in a given case!
+                        </p>
+                    </article>
+                    <article>
+                        <header>
+                            <h2>Suggestions for further Development</h2>
+                        </header>
+                        <ul>
+                            <li>Setting component (as a new nab bar button) for the admin to modify the operational parts of the server</li>
+                            <li>Modify saving folder path of the files on server side</li>
+                            <li>Modify user rights and handle DB level too</li>
+                            <li>Handle APi request errors in seperate level(s)</li>
+                            <li>Import and export DB data and file content with e.g.in a protected zip file</li>
+                            <li>Automatic loading from directory when DB is lost</li>
+                            <li>Database data is saved, for example, in a JSON file</li>
+                            <li>add additional storage path in case of server disk is full</li>
+                            <li>Monitoring Server storage disk size</li>
+                            <li>Adding user profile e.g. set theme profile picture</li>
+                            <li>Add favorite mark to uploaded files</li>
+                            <li>On the uploaded files page, multiple files download (in a zip file) or delete at once</li>
+                            <li>Password reset by user</li>
+                            <li>Log every event what is done by the users</li>
+                        </ul>                       
+                    </article>
+                </section>    
+            </section>
+        </mat-card-content>
+      </mat-card>
+    </section>
+</section>
+  

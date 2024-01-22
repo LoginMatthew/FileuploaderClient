@@ -1,0 +1,92 @@
+
+<section class="row">          
+    <button [disabled]="!isAllowedToEdit" class="btn btn-outline-primary" (click)="open(popupmodal)"><i class="bi bi-pen"> Edit</i></button>          
+</section>
+  
+<section class="container">
+  <ng-template #popupmodal let-modal>
+    <header class="modal-header" style="text-align: center; display: block;">
+        <h2>Edit User data</h2>
+    </header>
+    <section class="modal-body">
+      <section class="edit">
+        <form>
+          <section class="mb-3">
+            <label for="name">User Name</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.userName" disabled>
+          </section>
+          <section *ngIf="isAdmminLoggedIn" class="col mb-3">
+            <label  for="isPasswordModify">Modify Password:</label>
+            <input type="checkbox" class="form-check-input" id="isPasswordModify" name="isPasswordModify"  [(ngModel)]="isPasswordEdit">
+          </section>
+          <section class="mb-3" *ngIf="isPasswordEdit">
+            <form  [formGroup]="passwordModify" autocomplete="off">
+              <section>
+                <ng-container *ngFor="let error of error_messages.userName">
+                  <section class="form-group my-2" class="alert alert-danger" role="alert"  *ngIf="passwordModify.get('userName')?.dirty">
+                    {{ error.message }}
+                  </section>               
+                </ng-container>
+              </section>
+              <section class="mb-3">
+                  <label for="name">New Password:</label>
+                  <div class="input-group my-1">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input class="form-control" style="min-width: 205px; max-width: 205px;" [type] = "hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter a password"  formControlName="password">
+                    <span class="input-group-text" (click)="togglePassword()">
+                      <i class="bi bi-eye" *ngIf="hidePassword"   id="togglePassword" style="cursor: pointer"></i>
+                      <i class="bi bi-eye-slash" *ngIf="!hidePassword" id="togglePassword" style="cursor: pointer"></i>
+                      </span>
+                  </div>
+              </section>
+              <section>
+                <ng-container *ngFor="let error of error_messages.password">
+                  <section class="form-group my-2" class="alert alert-danger" role="alert"  *ngIf="passwordModify.get('password')?.hasError(error.type) && (passwordModify.get('password')?.dirty || passwordModify.get('password')?.touched)">
+                    {{ error.message }}
+                  </section>               
+                </ng-container>
+              </section>
+              <section class="mb-3">
+                <label for="name">Password Again:</label>
+                <div class="input-group my-1">
+                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <input class="form-control" style="min-width: 205px; max-width: 205px;" [type] = "hidePassword2 ? 'password' : 'text'" id="password" name="password" placeholder="Enter password confirmation" formControlName="confirmPassword" >
+                  <span class="input-group-text" (click)="togglePassword2()">
+                    <i class="bi bi-eye" *ngIf="hidePassword2"   id="togglePassword2" style="cursor: pointer"></i>
+                    <i class="bi bi-eye-slash" *ngIf="!hidePassword2" id="togglePassword2" style="cursor: pointer"></i>
+                    </span>
+                </div>
+              </section>
+              <section>
+                <ng-container *ngFor="let error of error_messages.confirmPassword">   
+                  <section class="form-group my-2" class="alert alert-danger" role="alert" *ngIf="passwordModify.get('confirmPassword')?.hasError(error.type) && (passwordModify.get('confirmPassword')?.dirty || passwordModify.get('confirmPassword')?.touched)">
+                    {{ error.message }}
+                  </section>
+                </ng-container>
+              </section>           
+            </form> 
+          </section>
+          <section class="mb-2">
+            <label >Modify User's Roles:</label>
+          </section>
+          <section class="row" data-bs-toggle="tooltip" data-bs-placement="top" title="If check user rights are given">
+              <section *ngIf="isAdmminLoggedIn" class="col mb-3">
+                  <label class="mx-2" for="adminCheckBox">IsAdmin:</label>
+                  <input type="checkbox" class="form-check-input" id="adminCheckBox" name="IsAdmin"  [(ngModel)]="isAdmin">
+              </section>
+              <section class="col mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="If it is checked user rights are given if not checked Guest rights are given! User only able to upgrade Guest to USER but not able to down!">
+                  <label class="mx-2" for="userCheckBox">isUser:</label>
+                  <input (disabled)="isUser" type="checkbox" class="form-check-input" id="userCheckBox" name="isUser" [(ngModel)]="isUser">
+              </section>
+          </section>   
+          <section class="row">
+            <section class="col-12 d-flex justify-content-center">
+              <button (disabled)="isUser" type="button" class="btn btn-primary float-start mx-2 my-2" (click)="edit()">Edit</button>
+              <button type="button" class="btn btn-danger float-right mx-2 my-2"  (click)="modal.dismiss('Cross click')">Close</button>
+            </section>
+          </section>
+        </form>
+      </section>
+    </section>
+  </ng-template>
+</section>

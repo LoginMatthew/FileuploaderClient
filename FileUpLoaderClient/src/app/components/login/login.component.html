@@ -1,0 +1,38 @@
+
+  <section class="container d-flex align-items-center justify-content-center" style="margin-top: 150px; height: 300px;">
+    <section class="col d-flex align-items-center justify-content-center">
+    <mat-card class="d-flex align-items-center justify-content-center" style="margin-bottom: 5rem;">
+      <mat-card-title style="margin-top: 1rem;">
+        <header>
+          <h2 class="form-signin-heading">Login</h2>
+        </header>
+      </mat-card-title>
+      <mat-card-content>
+      <section class="row">
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">      
+            <section class="form-group my-2" *ngIf="showError" class="alert alert-danger" role="alert">
+              {{errorMessage}}
+            </section>
+              <section class="form-group my-2">
+                <input type="email" style="min-width: 285px; max-width: 285px;" id="username" name="username" [(ngModel)]="user.UserName" class="form-control" placeholder="User Name" required>
+              </section>
+              <section class="input-group mb-3">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input class="form-control" style="min-width: 205px; max-width: 205px;" [type] = "hidePassword ? 'password' : 'text'" id="Password" name="Password" placeholder="Password" [(ngModel)]="user.Password">
+                <span class="input-group-text" (click)="togglePassword()">
+                  <i class="bi bi-eye" *ngIf="hidePassword"   id="togglePassword" style="cursor: pointer"></i>
+                  <i class="bi bi-eye-slash" *ngIf="!hidePassword" id="togglePassword" style="cursor: pointer"></i>
+                  </span>
+              </section>
+              <section class="form-group my-2 d-flex align-items-center justify-content-center">
+                <button class="btn btn-lg btn-primary" routerLink="/home" type="submit" [disabled]="!loginForm.valid">Log in</button>   
+              </section>
+              <section class="d-flex align-items-center justify-content-center" style="margin-top: 1rem;">
+                <label style="font-style: italic;">Do not have a profile, then <a href="/register">register</a>.</label>
+              </section>        
+          </form>
+        </section>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</section>

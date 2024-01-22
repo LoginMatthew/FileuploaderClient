@@ -1,0 +1,31 @@
+video {
+
+  max-height: 400px;
+  max-height: 200px; cursor:pointer;
+  box-shadow: 5px 5px 10px grey;
+}
+
+i {
+  cursor: pointer;
+  font-size: 3.75em;
+  box-shadow: 5px 5px 10px grey;
+  background-color: transparent;
+}
+
+
+i:hover {
+  box-shadow: 5px 5px 15px rgb(83, 82, 82);
+}
+
+video:hover{
+  box-shadow: 5px 5px 15px rgb(83, 82, 82);
+}
+
+.showVideo {
+  max-height: 200px; cursor:pointer;
+          box-shadow: 5px 5px 10px grey;
+}
+
+.showVideo:hover{
+  box-shadow: 5px 5px 15px rgb(83, 82, 82);
+}

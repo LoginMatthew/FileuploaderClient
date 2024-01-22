@@ -1,0 +1,51 @@
+
+<section class="row">          
+  <button [disabled]="isAllowToEdit" class="btn btn-outline-primary" (click)="open(popupmodal)"><i class="bi bi-pen"> Edit</i></button>          
+</section>
+
+<section class="container">
+      <ng-template #popupmodal let-modal>
+        <section class="modal-header">
+            <h3>Edit</h3>
+        </section>
+        <section class="modal-body">
+            <section class="edit">
+                <form>
+                  <section class="mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter a Name" [(ngModel)]="ModifieddataFile.name" [disabled]="isAllowToEdit ? true : false">
+                  </section>
+                  <section class="my-3">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter a Description" [(ngModel)]="ModifieddataFile.description" [disabled]="isAllowToEdit ? true : false">
+                  </section>
+                  <section class="my-3">
+                    <label for="filePath">FilePath</label>
+                    <input type="text" class="form-control" id="filePath" name="filePath"  [(ngModel)]="ModifieddataFile.filePath" disabled>
+                  </section>
+                  <section class="my-3">
+                    <label for="uploader">Uploader: </label>
+                    <input type="text" class="form-control" id="uploader" name="uploader" 
+                    [(ngModel)]="ModifieddataFile.uploader" disabled>
+                  </section>
+                  <section class="my-3">
+                    <label for="creationTime">Creation Time:</label>
+                    <input type="datetime" class="form-control" id="creationTime" name="creationTime" 
+                    [(ngModel)]="ModifieddataFile.creationDate" disabled>
+                  </section>
+                  <section class="my-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Private content: Only visible by uploader and administrator">
+                    <label class="form-check-label mx-2" for="privateContent"><i class="bi bi-incognito"> Is Private:</i></label>
+                    <input type="checkbox" class="form-check-input" id="privateContent" name="privateContent" 
+                     [checked]="ModifieddataFile.isPrivate" (change)="ModifieddataFile.isPrivate = !ModifieddataFile.isPrivate" [disabled]="isAllowToEditPrivate ? true : false">
+                  </section>
+                  <section class="row">
+                    <section class="col-12 d-flex justify-content-center">
+                      <button type="button" class="btn btn-primary float-start mx-2 my-2" (click)="edit()" [disabled]="isAllowToEdit ? true : false">Edit</button>
+                      <button type="button" class="btn btn-danger float-right mx-2 my-2"  (click)="modal.dismiss('Cross click')">Close</button>
+                    </section>
+                  </section>
+                </form>
+              </section>
+        </section>
+      </ng-template>
+  </section>

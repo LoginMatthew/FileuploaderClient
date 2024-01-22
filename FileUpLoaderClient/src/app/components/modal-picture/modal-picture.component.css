@@ -1,0 +1,8 @@
+.ShowPicture {
+  cursor:pointer;
+  box-shadow: 5px 5px 10px grey;          
+}
+
+.ShowPicture:hover{
+  box-shadow: 5px 5px 15px rgb(83, 82, 82);
+}
