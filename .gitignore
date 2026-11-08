@@ -1,0 +1,20 @@
+# Angular build and test output
+**/dist/
+**/tmp/
+**/out-tsc/
+**/coverage/
+**/.angular/cache/
+**/node_modules/
+
+# .NET build output (if the server is added to this repository)
+**/[Bb]in/
+**/[Oo]bj/
+**/.vs/
+**/TestResults/
+
+# IDE and local logs
+*.user
+*.suo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
